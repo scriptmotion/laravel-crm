@@ -71,7 +71,7 @@ return array(
 			'driver'   => 'mysql',
 			'host'     => '95.211.76.100',
 			'database' => 'd262h26_crm',
-			'username' => 'd262h26_r_chris',
+			'username' => 'd262h26_c_chris',
 			'password' => 'script2012',
 			'charset'  => 'utf8',
 			'prefix'   => '',
