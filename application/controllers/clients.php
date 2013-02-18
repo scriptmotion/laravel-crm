@@ -11,9 +11,11 @@ class Clients_Controller extends Base_Controller {
 			->with('clients', Clients::all());
 	}
 	
-	public function get_view()
+	public function get_view($id)
 	{
-		return 'hi there!';
+		return View::make('home.client')
+			->with('title', 'Klant')
+			->with('client', Clients::find($id));
 	}
 	
 	public function get_new()

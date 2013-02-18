@@ -51,7 +51,8 @@
           </div>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="{{ URL::base() }}">Home</a></li>
+            	<li><a href="{{ URL::base() }}">Home</a></li>
+            	<li>{{ HTML::link_to_route('clients', 'Klanten') }}</li>
               @if ( !Auth::guest() )
               <li><a href="{{ URL::to('admin') }}">Create New</a></li>
               @endif

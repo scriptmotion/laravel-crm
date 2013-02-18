@@ -44,7 +44,7 @@ Route::any('clients', function()
 });
 */
 Route::get('clients', array('as'=>'clients', 'uses'=>'clients@index'));
-Route::get('clients/(:any)', array('as'=>'clients', 'uses'=>'clients@view'));
+Route::get('clients/(:any)', array('as'=>'client', 'uses'=>'clients@view'));
 Route::any('clients/(:num)/edit', array('as'=>'edit_client', 'uses'=>'clients@edit')); 
 Route::put('clients/update', array('uses'=>'clients@update'));
 
