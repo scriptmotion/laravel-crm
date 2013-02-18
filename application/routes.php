@@ -36,6 +36,18 @@ Route::post('courses', function() {
 |
 */
 
+/*
+Route::any('clients', function()
+{
+	$clients = Clients::all();
+	return view::make('home.clients')->with('clients', $clients);
+});
+*/
+Route::get('clients', array('as'=>'clients', 'uses'=>'clients@index'));
+Route::get('clients/(:any)', array('as'=>'clients', 'uses'=>'clients@view'));
+Route::any('clients/(:num)/edit', array('as'=>'edit_client', 'uses'=>'clients@edit')); 
+Route::put('clients/update', array('uses'=>'clients@update'));
+
 Route::get('/', function()
 {
 	$trajects = Trajects::all();
@@ -102,8 +114,8 @@ Route::any('api/v1/todos/(:num?)', array('as' => 'api.todos', 'uses' => 'api.tod
 
 Event::listen('404', function()
 {
-	return 'ERROROR';
-	//return Response::error('404');
+	//return 'ERROROR';
+	return Response::error('404');
 });
 
 Event::listen('500', function()
