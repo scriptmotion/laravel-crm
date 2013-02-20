@@ -112,6 +112,8 @@ Event::listen(Lang::loader, function($bundle, $language, $file)
 	return Lang::file($bundle, $language, $file);
 });
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Attach The Laravel Profiler

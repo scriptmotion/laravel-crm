@@ -1,24 +1,24 @@
 <?php
 
-class Clients_Controller extends Base_Controller {
+class Trajects_Controller extends Base_Controller {
 
 	public $restful = true;
 
 	public function get_index()
-	{
-		return View::make('home.clients')
-			->with('title', 'Alle klanten')
-			->with('clients', Clients::all());
+	{	
+		return View::make('home.trajects')
+			->with('title', 'Alle trajecten')
+			->with('trajects', Trajects::left_join('clients',function($join){
+    $join->on('trajects.client_id','=','clients.id');
+})->order_by('clients.name','asc')->get(array('trajects.*','clients.name as cl_name')));	
 	}
 	
 	public function get_view($id)
 	{
-		//$comments = Clients::find(1)->contacts->get();
-		//echo '<pre>'; print_r($comments); echo '</pre>';
-		return View::make('home.client')
-			->with('title', 'Klant')
-			->with('client', Clients::find($id))
-			->with('contacts', Contacts::where('company_id', '=', $id)->get());			
+		return View::make('home.traject')
+			->with('title', 'Traject')
+			->with('traject', Trajects::find($id))
+			->with('clients', Clients::where('id', '=', $id)->get());
 	}
 	
 	public function get_new()
@@ -31,11 +31,11 @@ class Clients_Controller extends Base_Controller {
 		return 'henk';
 	}
 	
-	public function get_edit_contact($id)
+	public function get_edit_traject($id)
 	{
-		return View::make('home.contact_edit')
-			->with('title', 'Edit contact')
-			->with('contact', Contacts::find($id));
+		return View::make('home.traject_edit')
+			->with('title', 'Edit traject')
+			->with('traject', Trajects::find($id));
 	}
 	
 	public function get_add_contact($id)
@@ -66,9 +66,9 @@ class Clients_Controller extends Base_Controller {
 	
 	public function get_edit($id)
 	{
-		return View::make('home.clients_edit')
-			->with('title','Edit client')
-			->with('client', Clients::find($id));
+		return View::make('home.traject_edit')
+			->with('title','Edit traject')
+			->with('traject', Trajects::find($id));
 	}
 	
 	public function put_update()

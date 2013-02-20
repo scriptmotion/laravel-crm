@@ -53,6 +53,7 @@
             <ul class="nav">
             	<li><a href="{{ URL::base() }}">Home</a></li>
             	<li>{{ HTML::link_to_route('clients', 'Klanten') }}</li>
+            	<li>{{ HTML::link_to_route('trajects', 'Trajecten') }}</li>
               @if ( !Auth::guest() )
               <li><a href="{{ URL::to('admin') }}">Create New</a></li>
               @endif

@@ -36,17 +36,19 @@ Route::post('courses', function() {
 |
 */
 
-/*
-Route::any('clients', function()
-{
-	$clients = Clients::all();
-	return view::make('home.clients')->with('clients', $clients);
-});
-*/
+Route::get('trajects', array('as'=>'trajects', 'uses'=>'trajects@index'));
+Route::get('trajects/(:any)', array('as'=>'traject', 'uses'=>'trajects@view'));
+Route::any('trajects/(:num)/edit', array('as'=>'edit_traject', 'uses'=>'trajects@edit')); 
+
 Route::get('clients', array('as'=>'clients', 'uses'=>'clients@index'));
 Route::get('clients/(:any)', array('as'=>'client', 'uses'=>'clients@view'));
 Route::any('clients/(:num)/edit', array('as'=>'edit_client', 'uses'=>'clients@edit')); 
 Route::put('clients/update', array('uses'=>'clients@update'));
+
+Route::any('contacts/(:num)/edit', array('as'=>'edit_contact', 'uses'=>'clients@edit_contact'));
+Route::any('contacts/(:num)/add', array('as'=>'add_contact', 'uses'=>'clients@add_contact'));
+Route::post('contacts/add', array('uses'=>'clients@contact'));
+Route::put('contacts/update', array('uses'=>'clients@update_contact'));
 
 Route::get('/', function()
 {
@@ -150,6 +152,7 @@ Event::listen('500', function()
 |		}));
 |
 */
+
 
 Route::filter('before', function()
 {

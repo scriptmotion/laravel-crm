@@ -11,5 +11,10 @@ class Clients extends Eloquent {
      public static function validate($data) {
 		return Validator::make($data, static::$rules);
 	}
+	
+	public function contacts()
+    {
+    	return $this->has_many('Contacts');
+    }
 
 }
