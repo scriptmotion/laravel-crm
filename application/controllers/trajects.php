@@ -64,6 +64,13 @@ class Trajects_Controller extends Base_Controller {
 		}
 	}
 	
+	public function get_confirm_delete($id)
+	{
+		return View::make('home.traject_confirm_delete')
+			->with('title','Delete traject')
+			->with('traject', Trajects::find($id));
+	}
+	
 	public function get_edit($id)
 	{
 		return View::make('home.traject_edit')

@@ -24,6 +24,12 @@
 				},
 				urlRoot: 'index.php/courses/'
 			});
+			
+			var Person = Backbone.Model.extend({urlRoot : '/timer'});
+			//var myName = new Person({id: "12345"});
+			var games = new Person; 
+			console.log(games);
+			
 		});
 	</script>
 </head>

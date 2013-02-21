@@ -36,9 +36,16 @@ Route::post('courses', function() {
 |
 */
 
+Route::any('time/(:num)/start', array('as'=>'time_start', 'uses'=>'time@start'));
+Route::any('time/(:num)/stop', array('as'=>'time_stop', 'uses'=>'time@stop'));
+Route::put('time/stop', array('uses'=>'time@add'));
+Route::any('time/(:num)/delete', array('as'=>'time_delete', 'uses'=>'time@delete'));
+
 Route::get('trajects', array('as'=>'trajects', 'uses'=>'trajects@index'));
 Route::get('trajects/(:any)', array('as'=>'traject', 'uses'=>'trajects@view'));
 Route::any('trajects/(:num)/edit', array('as'=>'edit_traject', 'uses'=>'trajects@edit')); 
+Route::any('trajects/(:num)/confirm_delete', array('as'=>'confirm_delete_traject', 'uses'=>'trajects@confirm_delete'));
+Route::any('trajects/(:num:)/delete', array('as'=>'delete_traject', 'uses'=>'trajects@delete'));
 
 Route::get('clients', array('as'=>'clients', 'uses'=>'clients@index'));
 Route::get('clients/(:any)', array('as'=>'client', 'uses'=>'clients@view'));
@@ -53,7 +60,11 @@ Route::put('contacts/update', array('uses'=>'clients@update_contact'));
 Route::get('/', function()
 {
 	$trajects = Trajects::all();
-	return View::make('home.index')->with('trajects', $trajects);
+	//Posts::where_status(1)->order_by(DB::raw(''),DB::raw('RAND()')); 
+	$active_timer = Time::where_user(1)->where_stop(0)->left_join('trajects',function($join){
+    $join->on('time.project','=','trajects.id');
+})->first(array('time.*','trajects.name as cl_name'));
+	return View::make('home.index')->with('trajects', $trajects)->with('timer', $active_timer);
 });
 
 // Present the user with login form

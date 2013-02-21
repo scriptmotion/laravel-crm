@@ -74,7 +74,7 @@ return array(
 			'username' => 'd262h26_c_chris',
 			'password' => 'script2012',
 			'charset'  => 'utf8',
-			'prefix'   => '',
+			'prefix'   => ''
 		),
 
 		'pgsql' => array(
